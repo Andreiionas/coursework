@@ -1,17 +1,20 @@
-# Use the official Node.js image
+# Use the official Node.js image as a base image
 FROM node:18-alpine
 
 # Set the working directory inside the container
-WORKDIR /app/
+WORKDIR /src
 
-# Copy all project files into the container
-COPY . .
+# Copy package.json and package-lock.json first to install dependencies separately
+COPY package*.json ./
 
-# Install dependencies
+# Install dependencies, including bcrypt
 RUN npm install
+
+# Copy the rest of the application code
+COPY . .
 
 # Expose the port the app will run on
 EXPOSE 3000
 
-# Use CMD to run the app
+# Start the app using npm start
 CMD ["npm", "start"]
