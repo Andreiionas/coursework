@@ -10,4 +10,4 @@ WORKDIR /src
 EXPOSE 3000
 
 # Use CMD to run the app with npm start
-ENTRYPOINT ["node", "app.js"]
+ENTRYPOINT ["npm", "start"]
